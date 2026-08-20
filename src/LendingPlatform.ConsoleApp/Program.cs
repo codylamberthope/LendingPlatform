@@ -11,7 +11,7 @@ try
     var store = new JsonFileRecordedApplicationStore(storePath);
     var policy = new LoanEligibilityPolicy();
     var recordApplication = new RecordSecuredLoanApplication(policy, store);
-    var host = new LoanOriginationConsoleHost(recordApplication, store, Console.In, Console.Out);
+    var host = new LoanOriginationConsoleHost(recordApplication, Console.In, Console.Out);
     host.Run();
 }
 catch (InvalidOperationException exception)

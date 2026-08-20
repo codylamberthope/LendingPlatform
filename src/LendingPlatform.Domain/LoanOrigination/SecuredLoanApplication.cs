@@ -38,18 +38,16 @@ public sealed class SecuredLoanApplication
     }
 
     public static SecuredLoanApplication Record(
-        PoundSterlingAmount loanAmount,
-        PoundSterlingAmount securityAssetValue,
-        CreditScore applicantCreditScore,
+        ProposedSecuredLoan proposedApplication,
         LoanDecision decision,
         DateTimeOffset recordedAt)
     {
         return new SecuredLoanApplication(
             SecuredLoanApplicationId.New(),
-            loanAmount,
-            securityAssetValue,
-            applicantCreditScore,
-            LoanToValueRatio.From(loanAmount, securityAssetValue),
+            proposedApplication.LoanAmount,
+            proposedApplication.SecurityAssetValue,
+            proposedApplication.ApplicantCreditScore,
+            proposedApplication.LoanToValue,
             decision,
             recordedAt);
     }
@@ -59,6 +57,7 @@ public sealed class SecuredLoanApplication
         PoundSterlingAmount loanAmount,
         PoundSterlingAmount securityAssetValue,
         CreditScore applicantCreditScore,
+        LoanToValueRatio evaluatedLoanToValue,
         LoanDecision decision,
         DateTimeOffset recordedAt)
     {
@@ -67,7 +66,7 @@ public sealed class SecuredLoanApplication
             loanAmount,
             securityAssetValue,
             applicantCreditScore,
-            LoanToValueRatio.From(loanAmount, securityAssetValue),
+            evaluatedLoanToValue,
             decision,
             recordedAt);
     }

@@ -151,8 +151,9 @@ public sealed class LoanEligibilityPolicyTests
     private LoanDecision Evaluate(decimal loanPounds, decimal assetPounds, int creditScore)
     {
         return _policy.Evaluate(
-            PoundSterlingAmount.FromPounds(loanPounds),
-            PoundSterlingAmount.FromPounds(assetPounds),
-            CreditScore.From(creditScore));
+            ProposedSecuredLoan.From(
+                PoundSterlingAmount.FromPounds(loanPounds),
+                PoundSterlingAmount.FromPounds(assetPounds),
+                CreditScore.From(creditScore)));
     }
 }

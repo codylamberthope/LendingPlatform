@@ -40,13 +40,12 @@ public sealed class ApplicationBookStatisticsTests
                 {
                     EligibilityDeclineReason.LoanToValueAtOrAboveSmallLoanMaximum(
                         LoanToValueRatio.From(loan, asset),
-                        0.90m)
+                        0.90m,
+                        LoanEligibilityPolicy.LargeLoanAmountThreshold)
                 });
 
         return SecuredLoanApplication.Record(
-            loan,
-            asset,
-            CreditScore.From(750),
+            ProposedSecuredLoan.From(loan, asset, CreditScore.From(750)),
             decision,
             DateTimeOffset.UtcNow);
     }

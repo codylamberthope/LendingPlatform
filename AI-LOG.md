@@ -8,6 +8,10 @@ Key prompts, iterations, and corrections used while building this solution.
 2. Analyse the requirements for shortfalls in the business rules and suggest how to fix them.
 3. Create a plan to implement the task. Adhere to best practices and strict domain-driven guidelines. Naming must explain what the object or process actually does. Ask as many clarifying questions as possible.
 4. Implement the attached DDD secured-lending console plan. Do not edit the plan file. Complete every to-do.
+5. Analyse this repo and suggest areas where the code can be streamlined/cleaned up without sacrificing naming readability or DDD best practises.
+6. Fix the issues raised and ensure all unit tests still pass.
+7. Provide inputs to test each scenario so I can manually verify.
+8. Add the manual verification tables to a new md file called `VERIFICATION.md`.
 
 ## Notable analysis (prompt 2)
 
@@ -43,4 +47,22 @@ Locked by the author before implementation:
 ## Output questioned
 
 - Whether amount-out-of-range applications should still receive LTV/credit reasons: yes, per “collect all reasons”.
-- Whether reconstituting from JSON should trust the stored LTV field: LTV is recomputed from loan and asset on load so the aggregate cannot drift from its amounts.
+- Whether reconstituting from JSON should trust the stored LTV field: originally recomputed from loan and asset on load. Revisited in prompt 5–6: persist and reconstitute the stored ratio so the book is a historical snapshot if the formula ever changes.
+
+## Streamlining review (prompt 5)
+
+Keep: named product terms (including two different 0.60 meanings), `Record` vs `Reconstitute`, collect-all decline reasons, policy as a domain service, four-project split.
+
+Change: introduce `ProposedSecuredLoan` so LTV is derived once; drive small-loan bands from named constants; format decline copy from those terms; value objects as `readonly record struct`; store port `Append` plus a statistics query; console prompt helper without dummy domain values; `Directory.Build.props`.
+
+## Iterations while streamlining (prompt 6)
+
+- `Evaluate`, `Record`, and `Execute` now take `ProposedSecuredLoan`. `Reconstitute` takes `LoanToValueRatio.FromRecordedRatio` instead of dividing again.
+- Exclusive small-loan bands are an ordered list built from the existing named thresholds. Band descriptions use `AsPercent` so copy cannot drift from 0.60 / 0.80 / 0.90.
+- Large-loan and “under £1 million” explanations format `LargeLoanAmountThreshold` rather than the string “£1 million”.
+- `IRecordedApplicationStore.Add` + `Save` became `Append`. The console reads opening totals from `RecordSecuredLoanApplication.CurrentBookStatistics()` and no longer depends on the store.
+- Console `dotnet build` into `bin` failed while a running `LendingPlatform.ConsoleApp` process locked the output DLLs. A build to a temp folder succeeded (0 warnings, 0 errors). Domain tests: 32 passed.
+
+## Manual verification (prompts 7–8)
+
+Console inputs covering validation, amount limits, exclusive LTV bands, the £1m cliff, collect-all reasons, and book totals were written to `VERIFICATION.md`.

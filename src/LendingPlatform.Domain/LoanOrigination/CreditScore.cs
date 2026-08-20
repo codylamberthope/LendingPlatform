@@ -1,6 +1,6 @@
 namespace LendingPlatform.Domain.LoanOrigination;
 
-public sealed class CreditScore : IEquatable<CreditScore>
+public readonly record struct CreditScore
 {
     public const int MinimumInclusive = 1;
     public const int MaximumInclusive = 999;
@@ -12,11 +12,11 @@ public sealed class CreditScore : IEquatable<CreditScore>
         Value = value;
     }
 
-    public static bool TryCreate(int value, out CreditScore? score, out string error)
+    public static bool TryCreate(int value, out CreditScore score, out string error)
     {
         if (value < MinimumInclusive || value > MaximumInclusive)
         {
-            score = null;
+            score = default;
             error = $"Credit score must be an integer from {MinimumInclusive} to {MaximumInclusive}.";
             return false;
         }
@@ -33,16 +33,10 @@ public sealed class CreditScore : IEquatable<CreditScore>
             throw new ArgumentOutOfRangeException(nameof(value), value, error);
         }
 
-        return score!;
+        return score;
     }
 
     public bool MeetsMinimum(int requiredMinimum) => Value >= requiredMinimum;
-
-    public bool Equals(CreditScore? other) => other is not null && Value == other.Value;
-
-    public override bool Equals(object? obj) => obj is CreditScore other && Equals(other);
-
-    public override int GetHashCode() => Value;
 
     public override string ToString() => Value.ToString();
 }

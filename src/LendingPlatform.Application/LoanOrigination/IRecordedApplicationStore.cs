@@ -9,7 +9,5 @@ public interface IRecordedApplicationStore
 {
     IReadOnlyList<SecuredLoanApplication> GetAll();
 
-    void Add(SecuredLoanApplication application);
-
-    void Save();
+    void Append(SecuredLoanApplication application);
 }

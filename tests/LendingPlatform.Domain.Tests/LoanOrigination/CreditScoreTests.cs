@@ -10,8 +10,7 @@ public sealed class CreditScoreTests
     [InlineData(-5)]
     public void TryCreate_rejects_scores_outside_one_to_nine_hundred_and_ninety_nine(int value)
     {
-        Assert.False(CreditScore.TryCreate(value, out var score, out var error));
-        Assert.Null(score);
+        Assert.False(CreditScore.TryCreate(value, out _, out var error));
         Assert.Contains("1 to 999", error, StringComparison.Ordinal);
     }
 

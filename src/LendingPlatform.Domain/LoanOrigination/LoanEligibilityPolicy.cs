@@ -28,23 +28,35 @@ public sealed class LoanEligibilityPolicy
 
     public const int MinimumCreditScoreForLargeLoan = 950;
 
-    public LoanDecision Evaluate(
-        PoundSterlingAmount loanAmount,
-        PoundSterlingAmount securityAssetValue,
-        CreditScore applicantCreditScore)
+    private static readonly SmallLoanCreditBand[] SmallLoanCreditBands =
+    [
+        new(
+            LowerLoanToValueBandUpperBound,
+            MinimumCreditScoreForLowerLoanToValueBand,
+            $"loan to value below {AsPercent(LowerLoanToValueBandUpperBound)}"),
+        new(
+            MidLoanToValueBandUpperBound,
+            MinimumCreditScoreForMidLoanToValueBand,
+            $"loan to value of at least {AsPercent(LowerLoanToValueBandUpperBound)} and below {AsPercent(MidLoanToValueBandUpperBound)}"),
+        new(
+            HighLoanToValueBandUpperBound,
+            MinimumCreditScoreForHighLoanToValueBand,
+            $"loan to value of at least {AsPercent(MidLoanToValueBandUpperBound)} and below {AsPercent(HighLoanToValueBandUpperBound)}")
+    ];
+
+    public LoanDecision Evaluate(ProposedSecuredLoan proposedApplication)
     {
         var declineReasons = new List<EligibilityDeclineReason>();
-        var loanToValue = LoanToValueRatio.From(loanAmount, securityAssetValue);
 
-        CollectAmountLimitFailures(loanAmount, declineReasons);
+        CollectAmountLimitFailures(proposedApplication.LoanAmount, declineReasons);
 
-        if (loanAmount.IsAtLeast(LargeLoanAmountThreshold))
+        if (proposedApplication.LoanAmount.IsAtLeast(LargeLoanAmountThreshold))
         {
-            CollectLargeLoanFailures(loanToValue, applicantCreditScore, declineReasons);
+            CollectLargeLoanFailures(proposedApplication, declineReasons);
         }
         else
         {
-            CollectSmallLoanFailures(loanToValue, applicantCreditScore, declineReasons);
+            CollectSmallLoanFailures(proposedApplication, declineReasons);
         }
 
         return declineReasons.Count == 0
@@ -70,66 +82,52 @@ public sealed class LoanEligibilityPolicy
     }
 
     private static void CollectLargeLoanFailures(
-        LoanToValueRatio loanToValue,
-        CreditScore applicantCreditScore,
+        ProposedSecuredLoan proposedApplication,
         List<EligibilityDeclineReason> declineReasons)
     {
-        if (!loanToValue.IsAtMost(MaximumLoanToValueForLargeLoan))
+        if (!proposedApplication.LoanToValue.IsAtMost(MaximumLoanToValueForLargeLoan))
         {
             declineReasons.Add(
                 EligibilityDeclineReason.LoanToValueExceedsLargeLoanMaximum(
-                    loanToValue,
-                    MaximumLoanToValueForLargeLoan));
+                    proposedApplication.LoanToValue,
+                    MaximumLoanToValueForLargeLoan,
+                    LargeLoanAmountThreshold));
         }
 
-        if (!applicantCreditScore.MeetsMinimum(MinimumCreditScoreForLargeLoan))
+        if (!proposedApplication.ApplicantCreditScore.MeetsMinimum(MinimumCreditScoreForLargeLoan))
         {
             declineReasons.Add(
                 EligibilityDeclineReason.CreditScoreBelowLargeLoanMinimum(
-                    applicantCreditScore,
-                    MinimumCreditScoreForLargeLoan));
+                    proposedApplication.ApplicantCreditScore,
+                    MinimumCreditScoreForLargeLoan,
+                    LargeLoanAmountThreshold));
         }
     }
 
     private static void CollectSmallLoanFailures(
-        LoanToValueRatio loanToValue,
-        CreditScore applicantCreditScore,
+        ProposedSecuredLoan proposedApplication,
         List<EligibilityDeclineReason> declineReasons)
     {
-        if (loanToValue.IsBelow(LowerLoanToValueBandUpperBound))
+        foreach (var band in SmallLoanCreditBands)
         {
-            RequireCreditScoreForBand(
-                applicantCreditScore,
-                MinimumCreditScoreForLowerLoanToValueBand,
-                "loan to value below 60%",
-                declineReasons);
-            return;
-        }
+            if (!proposedApplication.LoanToValue.IsBelow(band.ExclusiveUpperBound))
+            {
+                continue;
+            }
 
-        if (loanToValue.IsBelow(MidLoanToValueBandUpperBound))
-        {
             RequireCreditScoreForBand(
-                applicantCreditScore,
-                MinimumCreditScoreForMidLoanToValueBand,
-                "loan to value of at least 60% and below 80%",
-                declineReasons);
-            return;
-        }
-
-        if (loanToValue.IsBelow(HighLoanToValueBandUpperBound))
-        {
-            RequireCreditScoreForBand(
-                applicantCreditScore,
-                MinimumCreditScoreForHighLoanToValueBand,
-                "loan to value of at least 80% and below 90%",
+                proposedApplication.ApplicantCreditScore,
+                band.MinimumCreditScore,
+                band.Description,
                 declineReasons);
             return;
         }
 
         declineReasons.Add(
             EligibilityDeclineReason.LoanToValueAtOrAboveSmallLoanMaximum(
-                loanToValue,
-                HighLoanToValueBandUpperBound));
+                proposedApplication.LoanToValue,
+                HighLoanToValueBandUpperBound,
+                LargeLoanAmountThreshold));
     }
 
     private static void RequireCreditScoreForBand(
@@ -147,4 +145,11 @@ public sealed class LoanEligibilityPolicy
                     loanToValueBandDescription));
         }
     }
+
+    private static string AsPercent(decimal ratio) => $"{ratio * 100m:0}%";
+
+    private readonly record struct SmallLoanCreditBand(
+        decimal ExclusiveUpperBound,
+        int MinimumCreditScore,
+        string Description);
 }

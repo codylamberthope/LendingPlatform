@@ -27,4 +27,12 @@ public sealed class LoanToValueRatioTests
 
         Assert.Equal(100_000m / 300_000m, ratio.Ratio);
     }
+
+    [Fact]
+    public void FromRecordedRatio_preserves_the_stored_ratio_without_recomputing()
+    {
+        var ratio = LoanToValueRatio.FromRecordedRatio(0.42m);
+
+        Assert.Equal(0.42m, ratio.Ratio);
+    }
 }

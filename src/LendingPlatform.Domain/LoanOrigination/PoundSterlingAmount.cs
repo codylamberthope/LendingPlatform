@@ -5,7 +5,7 @@ namespace LendingPlatform.Domain.LoanOrigination;
 /// <summary>
 /// A positive amount of pound sterling. Zero is reserved for empty statistical totals.
 /// </summary>
-public sealed class PoundSterlingAmount : IEquatable<PoundSterlingAmount>, IComparable<PoundSterlingAmount>
+public readonly record struct PoundSterlingAmount
 {
     private static readonly CultureInfo UnitedKingdom = CultureInfo.GetCultureInfo("en-GB");
 
@@ -22,7 +22,7 @@ public sealed class PoundSterlingAmount : IEquatable<PoundSterlingAmount>, IComp
     {
         if (pounds <= 0m)
         {
-            amount = Zero;
+            amount = default;
             error = "Amount must be greater than zero.";
             return false;
         }
@@ -58,22 +58,6 @@ public sealed class PoundSterlingAmount : IEquatable<PoundSterlingAmount>, IComp
 
         return total == 0m ? Zero : new PoundSterlingAmount(total);
     }
-
-    public int CompareTo(PoundSterlingAmount? other)
-    {
-        if (other is null)
-        {
-            return 1;
-        }
-
-        return Pounds.CompareTo(other.Pounds);
-    }
-
-    public bool Equals(PoundSterlingAmount? other) => other is not null && Pounds == other.Pounds;
-
-    public override bool Equals(object? obj) => obj is PoundSterlingAmount other && Equals(other);
-
-    public override int GetHashCode() => Pounds.GetHashCode();
 
     public override string ToString() => Pounds.ToString("C", UnitedKingdom);
 }

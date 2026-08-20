@@ -26,12 +26,13 @@ public sealed class JsonFileRecordedApplicationStore : IRecordedApplicationStore
 
     public IReadOnlyList<SecuredLoanApplication> GetAll() => _recordedApplications.AsReadOnly();
 
-    public void Add(SecuredLoanApplication application)
+    public void Append(SecuredLoanApplication application)
     {
         _recordedApplications.Add(application);
+        Save();
     }
 
-    public void Save()
+    private void Save()
     {
         var directory = Path.GetDirectoryName(_filePath);
         if (!string.IsNullOrWhiteSpace(directory))
@@ -129,6 +130,7 @@ public sealed class JsonFileRecordedApplicationStore : IRecordedApplicationStore
             PoundSterlingAmount.FromPounds(dto.LoanAmountPounds),
             PoundSterlingAmount.FromPounds(dto.SecurityAssetValuePounds),
             CreditScore.From(dto.ApplicantCreditScore),
+            LoanToValueRatio.FromRecordedRatio(dto.EvaluatedLoanToValueRatio),
             LoanDecision.FromRecordedState(dto.IsApproved, declineReasons),
             dto.RecordedAt);
     }

@@ -18,24 +18,19 @@ public sealed class RecordSecuredLoanApplication
         _recordedApplicationStore = recordedApplicationStore;
     }
 
-    public RecordSecuredLoanApplicationResult Execute(
-        PoundSterlingAmount loanAmount,
-        PoundSterlingAmount securityAssetValue,
-        CreditScore applicantCreditScore)
+    public ApplicationBookStatistics CurrentBookStatistics() =>
+        ApplicationBookStatistics.From(_recordedApplicationStore.GetAll());
+
+    public RecordSecuredLoanApplicationResult Execute(ProposedSecuredLoan proposedApplication)
     {
-        var decision = _loanEligibilityPolicy.Evaluate(loanAmount, securityAssetValue, applicantCreditScore);
+        var decision = _loanEligibilityPolicy.Evaluate(proposedApplication);
         var recordedApplication = SecuredLoanApplication.Record(
-            loanAmount,
-            securityAssetValue,
-            applicantCreditScore,
+            proposedApplication,
             decision,
             DateTimeOffset.UtcNow);
 
-        _recordedApplicationStore.Add(recordedApplication);
-        _recordedApplicationStore.Save();
+        _recordedApplicationStore.Append(recordedApplication);
 
-        return new RecordSecuredLoanApplicationResult(
-            decision,
-            ApplicationBookStatistics.From(_recordedApplicationStore.GetAll()));
+        return new RecordSecuredLoanApplicationResult(decision, CurrentBookStatistics());
     }
 }
