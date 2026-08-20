@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LendingPlatform.Application/LendingPlatform.Application.csproj" />
+    <Project Path="src/LendingPlatform.ConsoleApp/LendingPlatform.ConsoleApp.csproj" />
+    <Project Path="src/LendingPlatform.Domain/LendingPlatform.Domain.csproj" />
+    <Project Path="src/LendingPlatform.Infrastructure/LendingPlatform.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LendingPlatform.Domain.Tests/LendingPlatform.Domain.Tests.csproj" />
+  </Folder>
+</Solution>

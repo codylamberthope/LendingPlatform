@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\LendingPlatform.Domain\LendingPlatform.Domain.csproj" />
+    <ProjectReference Include="..\LendingPlatform.Application\LendingPlatform.Application.csproj" />
+    <ProjectReference Include="..\LendingPlatform.Infrastructure\LendingPlatform.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
