@@ -1,0 +1,340 @@
+[
+  {
+    "id": "f6f1151c-d43a-4484-b39f-ada77325d8df",
+    "loanAmountPounds": 30000,
+    "securityAssetValuePounds": 424000,
+    "applicantCreditScore": 850,
+    "evaluatedLoanToValueRatio": 0.0707547169811320754716981132,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanAmountBelowProductMinimum",
+        "explanation": "Loan amount \u00A330,000.00 is below the product minimum of \u00A3100,000.00."
+      }
+    ],
+    "recordedAt": "2026-08-19T21:47:19.2755109+00:00"
+  },
+  {
+    "id": "3e1ca265-867f-4978-8712-1c0da139833f",
+    "loanAmountPounds": 100000,
+    "securityAssetValuePounds": 175000,
+    "applicantCreditScore": 850,
+    "evaluatedLoanToValueRatio": 0.5714285714285714285714285714,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-19T21:47:58.9184966+00:00"
+  },
+  {
+    "id": "efe851db-2b61-42f8-a1cf-fce01dd37110",
+    "loanAmountPounds": 200000,
+    "securityAssetValuePounds": 180000,
+    "applicantCreditScore": 900,
+    "evaluatedLoanToValueRatio": 1.1111111111111111111111111111,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanToValueAtOrAboveSmallLoanMaximum",
+        "explanation": "Loan to value 111.11% is at or above the 90% maximum for loans under \u00A31 million."
+      }
+    ],
+    "recordedAt": "2026-08-19T21:48:33.5205159+00:00"
+  },
+  {
+    "id": "d95e49aa-31bd-4bf4-ba04-d2b9e21ecc5e",
+    "loanAmountPounds": 100000,
+    "securityAssetValuePounds": 120000,
+    "applicantCreditScore": 900,
+    "evaluatedLoanToValueRatio": 0.8333333333333333333333333333,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-19T21:49:18.238104+00:00"
+  },
+  {
+    "id": "f4cfded3-87d6-4c73-8e3d-1ed7d7075d4b",
+    "loanAmountPounds": 1500000,
+    "securityAssetValuePounds": 2000000,
+    "applicantCreditScore": 975,
+    "evaluatedLoanToValueRatio": 0.75,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanToValueExceedsLargeLoanMaximum",
+        "explanation": "Loan to value 75.00% exceeds the 60% maximum for loans of \u00A31 million or more."
+      }
+    ],
+    "recordedAt": "2026-08-19T21:49:58.3984568+00:00"
+  },
+  {
+    "id": "f84c5a2c-5986-4c45-8525-ad860b8c8a93",
+    "loanAmountPounds": 100000,
+    "securityAssetValuePounds": 200000,
+    "applicantCreditScore": 750,
+    "evaluatedLoanToValueRatio": 0.5,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:50:01.042197+00:00"
+  },
+  {
+    "id": "aaadd3fc-3b8f-40ea-be52-c66e36984fdf",
+    "loanAmountPounds": 99999.99,
+    "securityAssetValuePounds": 199999.98,
+    "applicantCreditScore": 750,
+    "evaluatedLoanToValueRatio": 0.5,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanAmountBelowProductMinimum",
+        "explanation": "Loan amount \u00A399,999.99 is below the product minimum of \u00A3100,000.00."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:50:31.0333694+00:00"
+  },
+  {
+    "id": "9288a7ed-8591-4125-a659-56e04e44db64",
+    "loanAmountPounds": 1500000,
+    "securityAssetValuePounds": 2500000,
+    "applicantCreditScore": 950,
+    "evaluatedLoanToValueRatio": 0.6,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:51:00.4974093+00:00"
+  },
+  {
+    "id": "45abaadf-fe22-40b5-b34a-543838ff2090",
+    "loanAmountPounds": 1500000.01,
+    "securityAssetValuePounds": 2500000.02,
+    "applicantCreditScore": 950,
+    "evaluatedLoanToValueRatio": 0.5999999992000000063999999488,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanAmountAboveProductMaximum",
+        "explanation": "Loan amount \u00A31,500,000.01 is above the product maximum of \u00A31,500,000.00."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:51:13.4728373+00:00"
+  },
+  {
+    "id": "f442524e-1ce8-4e98-9f21-bfdccdb0ee8f",
+    "loanAmountPounds": 200000,
+    "securityAssetValuePounds": 400000,
+    "applicantCreditScore": 760,
+    "evaluatedLoanToValueRatio": 0.5,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:51:27.3129418+00:00"
+  },
+  {
+    "id": "5e504ada-12a8-4f96-9d67-3d104eb73932",
+    "loanAmountPounds": 599999,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 750,
+    "evaluatedLoanToValueRatio": 0.599999,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:51:38.4650458+00:00"
+  },
+  {
+    "id": "4df39b57-4d5f-4fe4-8697-4226ea32a9ae",
+    "loanAmountPounds": 599999,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 749,
+    "evaluatedLoanToValueRatio": 0.599999,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "CreditScoreBelowRequiredForLoanToValueBand",
+        "explanation": "Credit score 749 is below the minimum of 750 for loan to value below 60%."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:51:50.7384196+00:00"
+  },
+  {
+    "id": "bc842cb6-3abf-4132-af92-8654f9a9a477",
+    "loanAmountPounds": 600000,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 799,
+    "evaluatedLoanToValueRatio": 0.6,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "CreditScoreBelowRequiredForLoanToValueBand",
+        "explanation": "Credit score 799 is below the minimum of 800 for loan to value of at least 60% and below 80%."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:52:09.6174643+00:00"
+  },
+  {
+    "id": "25c7c743-dd31-4067-ab1a-afd0d85d27cc",
+    "loanAmountPounds": 600000,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 800,
+    "evaluatedLoanToValueRatio": 0.6,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:52:25.0009331+00:00"
+  },
+  {
+    "id": "4a92251c-7c2f-43b1-91b7-2571ab0003fd",
+    "loanAmountPounds": 799999,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 800,
+    "evaluatedLoanToValueRatio": 0.799999,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:52:37.1608179+00:00"
+  },
+  {
+    "id": "53b7afb1-6413-49ee-81f1-0cfbd2303ebc",
+    "loanAmountPounds": 800000,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 899,
+    "evaluatedLoanToValueRatio": 0.8,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "CreditScoreBelowRequiredForLoanToValueBand",
+        "explanation": "Credit score 899 is below the minimum of 900 for loan to value of at least 80% and below 90%."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:52:47.752165+00:00"
+  },
+  {
+    "id": "8a824114-06da-49ef-ba6e-1c3e5d511d93",
+    "loanAmountPounds": 800000,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 900,
+    "evaluatedLoanToValueRatio": 0.8,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:53:00.0884217+00:00"
+  },
+  {
+    "id": "a281e1b1-cba0-44bf-9044-0239dbdab287",
+    "loanAmountPounds": 899999,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 900,
+    "evaluatedLoanToValueRatio": 0.899999,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:53:11.9044557+00:00"
+  },
+  {
+    "id": "0ef6502d-f06f-4516-8f59-c3c64285d0e6",
+    "loanAmountPounds": 900000,
+    "securityAssetValuePounds": 1000000,
+    "applicantCreditScore": 999,
+    "evaluatedLoanToValueRatio": 0.9,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanToValueAtOrAboveSmallLoanMaximum",
+        "explanation": "Loan to value 90.00% is at or above the 90% maximum for loans under \u00A31 million."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:53:24.7302649+00:00"
+  },
+  {
+    "id": "d88ca497-1d14-4fe3-893e-861bc76507c2",
+    "loanAmountPounds": 250000,
+    "securityAssetValuePounds": 250000,
+    "applicantCreditScore": 400,
+    "evaluatedLoanToValueRatio": 1,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanToValueAtOrAboveSmallLoanMaximum",
+        "explanation": "Loan to value 100.00% is at or above the 90% maximum for loans under \u00A31 million."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:53:47.5043447+00:00"
+  },
+  {
+    "id": "2f5b39d1-20bf-4634-a577-87d17b4ca866",
+    "loanAmountPounds": 999999,
+    "securityAssetValuePounds": 1999998,
+    "applicantCreditScore": 750,
+    "evaluatedLoanToValueRatio": 0.5,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:53:58.3606611+00:00"
+  },
+  {
+    "id": "46516a7e-b72e-44b7-ae17-bc0591173e1f",
+    "loanAmountPounds": 1000000,
+    "securityAssetValuePounds": 2000000,
+    "applicantCreditScore": 750,
+    "evaluatedLoanToValueRatio": 0.5,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "CreditScoreBelowLargeLoanMinimum",
+        "explanation": "Credit score 750 is below the minimum of 950 for loans of \u00A31 million or more."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:54:08.4881167+00:00"
+  },
+  {
+    "id": "9e356aea-7c14-49ec-8588-2f1bb360aa5c",
+    "loanAmountPounds": 1200000,
+    "securityAssetValuePounds": 2000000,
+    "applicantCreditScore": 950,
+    "evaluatedLoanToValueRatio": 0.6,
+    "isApproved": true,
+    "declineReasons": [],
+    "recordedAt": "2026-08-20T07:54:19.5439023+00:00"
+  },
+  {
+    "id": "996c7166-65a8-4906-b2a7-d7c136a58b51",
+    "loanAmountPounds": 1200000,
+    "securityAssetValuePounds": 2000000,
+    "applicantCreditScore": 949,
+    "evaluatedLoanToValueRatio": 0.6,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "CreditScoreBelowLargeLoanMinimum",
+        "explanation": "Credit score 949 is below the minimum of 950 for loans of \u00A31 million or more."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:54:31.4483777+00:00"
+  },
+  {
+    "id": "7997f66c-ec13-46dd-8822-f6e6780b1fb4",
+    "loanAmountPounds": 1200001,
+    "securityAssetValuePounds": 2000000,
+    "applicantCreditScore": 950,
+    "evaluatedLoanToValueRatio": 0.6000005,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanToValueExceedsLargeLoanMaximum",
+        "explanation": "Loan to value 60.00% exceeds the 60% maximum for loans of \u00A31 million or more."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:54:52.6319696+00:00"
+  },
+  {
+    "id": "53e3b93c-095e-4096-92e5-03ab75b1095b",
+    "loanAmountPounds": 2000000,
+    "securityAssetValuePounds": 2000000,
+    "applicantCreditScore": 400,
+    "evaluatedLoanToValueRatio": 1,
+    "isApproved": false,
+    "declineReasons": [
+      {
+        "code": "LoanAmountAboveProductMaximum",
+        "explanation": "Loan amount \u00A32,000,000.00 is above the product maximum of \u00A31,500,000.00."
+      },
+      {
+        "code": "LoanToValueExceedsLargeLoanMaximum",
+        "explanation": "Loan to value 100.00% exceeds the 60% maximum for loans of \u00A31 million or more."
+      },
+      {
+        "code": "CreditScoreBelowLargeLoanMinimum",
+        "explanation": "Credit score 400 is below the minimum of 950 for loans of \u00A31 million or more."
+      }
+    ],
+    "recordedAt": "2026-08-20T07:55:04.4654534+00:00"
+  }
+]
